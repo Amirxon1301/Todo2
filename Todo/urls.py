@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from asosiy.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('index', index),
+    path('edit/', edit),
+    path('', login_view),
+    path('logout/', logout_view),
 ]

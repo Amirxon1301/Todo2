@@ -11,18 +11,18 @@
             <h1>To-Do List</h1>
             <div style="display: flex; align-items: center;">
                 <h3>User</h3>
-                <a href="./login.html" style="text-decoration: none; color: red;">
+                <a href="/logout/" style="text-decoration: none; color: red;">
                 Log out
                 </a>
             </div>
       </div>
 
       <div class="task-add">
-        <form id="task-form" method="post">
+        <form id="task-form" method="post">{% csrf_token %}
             <div class="form1">
-              <input type="text" name="name" placeholder="Add Task...">
-              <input type="date" name="date">
-              <select name="status">
+              <input type="text" value="{{ rejalar.t_name }}" name="t_n" placeholder="Add Task...">
+              <input type="date" value="{{ rejalar.date }}" name="d">
+              <select name="p">
                 <option class="opt">
                   Not started
                 </option>
@@ -34,32 +34,33 @@
                 </option>
               </select>
             </div>
-            <div class="fomr1">
-              <input type="text" name="details" placeholder="Details ...">
+            <div class="fomr1">{% csrf_token %}
+              <input type="text" value="{{ rejalar.t_detail }}" name="t_d" placeholder="Details ...">
               <button type="submit" class="btn">Add Task</button>
             </div>
           </form>
       </div>
       <hr style="margin: 10px 5px;">
-      <div class="task">
+      {% for i in rejalar %}
+        <div class="task">
         <ul id="task-list">
           <li>
               <div>
-                  Task-name
+                  {{ i.t_name }}
               </div>
               <div>
-                    <input type="text" value="Completed" readonly >
-                    <input type="date" value="2023-03-06" readonly>
-                    <button type="submit" class="edit"><a href="./edit.html">Edit</a></button>
-                    <button type="submit" class="delete"><a href="./edit.html">Delete</a></button>
+                    <input type="text" value="{{ i.progress }}" readonly >
+                    <input type="text" value="{{ i.date }}" readonly>
+                    <button type="submit" class="edit"><a href="/edit/">Edit</a></button>
+                    <button type="submit" class="delete"><a href="/edit/">Delete</a></button>
               </div>
           </li>
         </ul>
-        <ul class="details"> 
-            Task-Details: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, eaque?
+        <ul class="details">
+            {{ i.t_detail}}
         </ul>
       </div>
-
+      {% endfor %}
     </div>
   </body>
 </html>
