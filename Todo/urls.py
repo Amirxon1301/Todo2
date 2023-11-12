@@ -24,4 +24,5 @@ urlpatterns = [
     path('edit/', edit),
     path('', login_view),
     path('logout/', logout_view),
+    path('delete/<int:son>', reja_ochir),
 ]
