@@ -38,7 +38,6 @@ def logout_view(request):
     logout(request)
     return redirect("/")
 
-def reja_ochir(request, son):
-    if request.user.is_authenticated:
-        Reja.objects.filter(id=son, egasi=request.user).delete()
+def reja_ochir(request, id):
+    Reja.objects.get(id=id, egasi=request.user).delete()
     return redirect("/index/")

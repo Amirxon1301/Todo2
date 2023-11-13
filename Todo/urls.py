@@ -20,9 +20,9 @@ from asosiy.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index', index),
+    path('index/', index),
     path('edit/', edit),
     path('', login_view),
     path('logout/', logout_view),
-    path('delete/<int:son>', reja_ochir),
+    path('delete/<int:id>/', reja_ochir),
 ]
